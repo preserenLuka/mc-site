@@ -1,0 +1,82 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.95);
+  /* removed flat background-color - page uses body gradient */
+  /* background-color: #242424; */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* link styles left as-is */
+a {
+  font-weight: 500;
+  color: #dfefff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #cde3ff;
+}
+
+/* center page and add gradient background */
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+  /* gradient from neutral gray to a Minecraft-like green */
+  background: linear-gradient(135deg, #2d2f33 10%, #5ea934 100%);
+  color: #f7f7f7;
+}
+
+/* lighten headings a bit */
+h1 {
+  font-size: 2.2rem;
+  margin: 0 0 0.6rem 0;
+}
+
+/* buttons baseline, kept but tuned */
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* light theme tweak */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+  }
+  body {
+    background: linear-gradient(135deg, #ececec 10%, #9fdf8e 100%);
+    color: #162028;
+  }
+  .card {
+    background: rgba(255, 255, 255, 0.85);
+    color: inherit;
+  }
+  .download-btn {
+    color: inherit;
+  }
+}
