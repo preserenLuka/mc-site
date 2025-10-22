@@ -1,0 +1,215 @@
+/* ---- Server row ---- */
+.server {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: clamp(0.65rem, 1.5vw, 0.9rem) clamp(0.8rem, 2vw, 1rem);
+  border-radius: 10px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(0, 0, 0, 0.06)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* title + address centered as one block */
+.serverInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
+}
+
+.serverText {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center title + address as a unit */
+  flex: 1;
+  min-width: 0; /* enables text truncation inside */
+}
+
+.serverTitle {
+  font-weight: 600;
+  font-size: clamp(1rem, 0.95rem + 0.4vw, 1.05rem);
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.serverAddress {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 0.18rem;
+  text-align: center;
+
+  /* robust wrapping for very long hostnames */
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Copy button on the right */
+.copyBtn {
+  --btn-bg: rgba(255, 255, 255, 0.06);
+  --btn-border: rgba(255, 255, 255, 0.08);
+  background: var(--btn-bg);
+  color: #fff;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--btn-border);
+  font-weight: 600;
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.copyBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.32);
+}
+.copyBtn.isCopied {
+  background: rgba(63, 201, 117, 0.18);
+  border-color: rgba(63, 201, 117, 0.35);
+}
+.copyIc {
+  width: 14px;
+  height: 14px;
+}
+
+/* Download button (also used by custom select trigger via buttonClass) */
+.downloadBtn {
+  --btn-bg: rgba(255, 255, 255, 0.06);
+  --btn-border: rgba(255, 255, 255, 0.08);
+  background: var(--btn-bg);
+  color: #fff;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid var(--btn-border);
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  white-space: nowrap;
+}
+.downloadBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.32);
+}
+
+/* ---- Modpack dropdown (styles for classes rendered by ModpackSelect) ---- */
+:global(.modpack-dropdown) {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+:global(.modpack-dropdown.custom) {
+  position: relative;
+}
+
+:global(.modpack-trigger) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 240px; /* lock width on desktop to prevent jump */
+  min-height: 38px;
+  padding-right: 0.8rem;
+}
+:global(.modpack-trigger:hover) {
+  transform: none;
+  box-shadow: none;
+}
+:global(.modpack-trigger .chev) {
+  opacity: 0.8;
+}
+
+:global(.modpack-menu) {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 100%;
+  list-style: none;
+  padding: 0.35rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(20, 20, 20, 0.9);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  z-index: 30;
+  animation: mp-fade-in 0.12s ease-out;
+}
+
+:global(.modpack-item) {
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+}
+:global(.modpack-item:hover),
+:global(.modpack-item.is-active) {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+@keyframes mp-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Mobile & motion ===== */
+@media (max-width: 720px) {
+  .server {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .serverInfo {
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .serverText {
+    align-items: flex-start;
+  }
+  :global(.modpack-dropdown) {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  :global(.modpack-trigger),
+  .downloadBtn {
+    width: 100%;
+  }
+  .downloadBtn {
+    width: 65%;
+  }
+}
+
+/* very small phones tighten spacing */
+@media (max-width: 360px) {
+  .copyBtn {
+    padding: 0.3rem 0.6rem;
+  }
+  .downloadBtn {
+    width: 65%;
+  }
+}
+
+/* respect reduced-motion & touch */
+@media (prefers-reduced-motion: reduce), (hover: none) {
+  .copyBtn:hover,
+  .downloadBtn:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}

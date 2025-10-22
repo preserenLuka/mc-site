@@ -1,0 +1,80 @@
+/* ---- Page shell ---- */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.siteRoot {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+  padding-block: clamp(1.25rem, 4vw, 2rem);
+  box-sizing: border-box;
+}
+
+/* ---- Card ---- */
+.card {
+  width: min(100%, 1080px); /* responsive width */
+  /* removed min-width: 720px */
+  background: rgba(10, 10, 10, 0.28);
+  backdrop-filter: blur(6px);
+  color: inherit;
+  padding: clamp(1rem, 4vw + 0.5rem, 3rem);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.serversTitle {
+  margin: 0 0 1rem 0;
+  font-size: clamp(1.35rem, 1.2rem + 1.6vw, 1.8rem);
+  letter-spacing: -0.02em;
+}
+
+/* ---- Server list ---- */
+.serverList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(0.6rem, 1.5vw, 0.9rem);
+}
+
+/* ====== Breakpoints ====== */
+
+/* Tablets and down */
+@media (max-width: 960px) {
+  .card {
+    border-radius: 12px;
+  }
+}
+
+/* Large phones / small tablets */
+@media (max-width: 720px) {
+  .card {
+    padding: clamp(0.9rem, 3.5vw, 1.5rem);
+  }
+}
+
+/* Phones */
+@media (max-width: 520px) {
+  .siteRoot {
+    padding-inline: 1rem;
+    padding-block: 1rem;
+  }
+  .card {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 360px) {
+  .serversTitle {
+    font-size: 1.25rem;
+  }
+}

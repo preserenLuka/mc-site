@@ -1,28 +1,16 @@
-import "./App.css";
+import styles from "./App.module.css";
+import ServerCard from "./ServerCard";
 import { servers } from "./data/servers";
 
 export default function App() {
   return (
-    <main className="site-root">
-      <section className="card servers">
-        <h1>My Minecraft Servers</h1>
+    <main className={styles.siteRoot}>
+      <section className={`${styles.card}`}>
+        <h1 className={styles.serversTitle}>My Minecraft Servers</h1>
 
-        <ul className="server-list">
-          {servers.map((s) => (
-            <li key={s.id} className="server">
-              <div className="server-info">
-                <div className="server-title">{s.title}</div>
-                <div className="server-address">{s.address}</div>
-              </div>
-              <a
-                className="download-btn"
-                href={s.download ?? "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Download Modpack
-              </a>
-            </li>
+        <ul className={styles.serverList}>
+          {servers.map((server) => (
+            <ServerCard key={server.id} {...server} />
           ))}
         </ul>
       </section>
